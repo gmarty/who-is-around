@@ -1,0 +1,23 @@
+{
+  "name": "who-is-around",
+  "description": "Who's Around?",
+  "version": "0.0.1",
+  "homepage": "https://github.com/gmarty/who-is-around",
+  "authors": [
+    "Guillaume Marty <gmarty@mozilla.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "!.jshintrc",
+    "node_modules",
+    "package.json",
+    "README.md"
+  ],
+  "dependencies": {
+    "fxos-mvc": "git@github.com:fxos/mvc.git",
+    "dns-sd.js": "git@github.com:justindarc/dns-sd.js"
+  },
+  "devDependencies": {}
+}
