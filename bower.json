@@ -17,7 +17,8 @@
   ],
   "dependencies": {
     "fxos-mvc": "git@github.com:fxos/mvc.git",
-    "dns-sd.js": "git@github.com:justindarc/dns-sd.js"
+    "dns-sd.js": "git@github.com:justindarc/dns-sd.js",
+    "lodash": "~3.1.0"
   },
   "devDependencies": {}
 }
