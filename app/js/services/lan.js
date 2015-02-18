@@ -25,15 +25,16 @@ class LanService extends Service {
 
   init() {
     DNSSD.addEventListener('discovered', (evt) => {
-      //console.log('DNSSD#ondiscovered()', evt);
-
       var peer = {
         id: evt.address,
         name: this._findName(evt.packet.records),
         connected: false,
         address: evt.address, // IP address
         type: this._guessType(evt.packet.records),
-        method: 'lan'
+        method: 'lan',
+
+        // Specific properties
+        _packet: evt.packet
       };
 
       this._dispatchEvent('peer', peer);

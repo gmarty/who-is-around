@@ -133,9 +133,10 @@ class BluetoothService extends Service {
           address: evt.device.address,
           type: evt.device.icon,
           method: 'bluetooth',
+
           // Specific properties
-          'class': evt.device.class,
-          paired: evt.device.paired
+          _class: evt.device.class,
+          _paired: evt.device.paired
         };
 
         if (!peer.name) {
