@@ -65,18 +65,24 @@ class LanService extends Service {
   }
 
   _findName(records = {}) {
-    var tentativeName = '';
+    var tentativeName = {};
 
     // Look for an AR record with recordType 1.
     tentativeName = records.AR.find(record => record.recordType === 1);
-    if (tentativeName) {
+    if (tentativeName && tentativeName.name) {
       return this._formatName(tentativeName.name);
     }
 
-    // Take the first AR record.
+    // Try the first AR record.
     tentativeName = records.AR[0];
-    if (tentativeName) {
+    if (tentativeName && tentativeName.name) {
       return this._formatName(tentativeName.name);
+    }
+
+    // Try the first AN record.
+    tentativeName = records.AN[0];
+    if (tentativeName && tentativeName.data) {
+      return this._formatName(tentativeName.data);
     }
 
     return '[No name]';
@@ -94,7 +100,7 @@ class LanService extends Service {
     // We reuse the name for now, but need a more complex logic in the future.
     var name = this._findName(records);
 
-    if (name.contains('-phone-') || name.contains('-iPhone')) {
+    if (name.contains('-phone-') || name.contains('-iPhone') || name.contains('iPhone')) {
       return 'phone';
     } else if (name.contains('-MacBook-Pro')) {
       return 'computer';
