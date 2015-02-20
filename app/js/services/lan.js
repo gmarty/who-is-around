@@ -65,27 +65,30 @@ class LanService extends Service {
   }
 
   _findName(records = {}) {
-    var tentativeName = {};
+    var name = '';
 
-    // Look for an AR record with recordType 1.
-    tentativeName = records.AR.find(record => record.recordType === 1);
-    if (tentativeName && tentativeName.name) {
-      return this._formatName(tentativeName.name);
-    }
+    ['AR', 'AN'].some(recordName => {
+      var tentativeName = {};
 
-    // Try the first AR record.
-    tentativeName = records.AR[0];
-    if (tentativeName && tentativeName.name) {
-      return this._formatName(tentativeName.name);
-    }
+      // Look for a record with recordType 1.
+      tentativeName = records[recordName]
+        .find(record => record.recordType === 1);
+      if (tentativeName && tentativeName.name) {
+        name = this._formatName(tentativeName.name);
+        return true;
+      }
 
-    // Try the first AN record.
-    tentativeName = records.AN[0];
-    if (tentativeName && tentativeName.data) {
-      return this._formatName(tentativeName.data);
-    }
+      // Try the first AR record.
+      tentativeName = records[recordName][0];
+      if (tentativeName && tentativeName.name) {
+        name = this._formatName(tentativeName.name);
+        return true;
+      }
 
-    return '[No name]';
+      return false;
+    });
+
+    return name || '[No name]';
   }
 
   _formatName(name = '') {
