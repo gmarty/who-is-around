@@ -103,9 +103,12 @@ class LanService extends Service {
     // We reuse the name for now, but need a more complex logic in the future.
     var name = this._findName(records);
 
-    if (name.contains('-phone-') || name.contains('-iPhone') || name.contains('iPhone')) {
+    if (name.contains('-phone-') || name.contains('-iPhone') || name.contains('iPhone') || name.contains('iphone')) {
       return 'phone';
-    } else if (name.contains('-MacBook-Pro')) {
+    } else if (name.contains('iPad') || name.contains('ipad')) {
+      return 'tablet';
+    } else if (name.contains('-MacBook-Pro') || name.contains('MacBookPro') || name.contains('-mbp') ||
+      name.contains('MacBookAir')) {
       return 'computer';
     }
 
