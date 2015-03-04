@@ -105,10 +105,10 @@ class LanService extends Service {
 
     if (name.contains('-phone-') || name.contains('-iPhone') || name.contains('iPhone') || name.contains('iphone')) {
       return 'phone';
-    } else if (name.contains('iPad') || name.contains('ipad')) {
+    } else if (name.contains('-ipad-') || name.contains('-iPad') || name.contains('iPad') || name.contains('ipad')) {
       return 'tablet';
     } else if (name.contains('-MacBook-Pro') || name.contains('MacBookPro') || name.contains('-mbp') ||
-      name.contains('MacBookAir')) {
+      name.contains('-MacBook-Air') || name.contains('MacBookAir')) {
       return 'computer';
     }
 
