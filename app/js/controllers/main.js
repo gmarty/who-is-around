@@ -6,8 +6,6 @@ import LanService from 'js/services/lan';
 
 import Settings from 'js/models/settings';
 
-import /* global _ */ 'components/lodash/lodash.min';
-
 export default
 class MainController extends Controller {
   constructor() {
@@ -22,8 +20,12 @@ class MainController extends Controller {
     console.log('MainController#init()');
 
     var addPeer = peer => {
-      this.settings.peers.push(peer);
-      this.settings.peers = _.uniq(this.settings.peers, peer => peer.id);
+      var isOldPeer = this.settings.peers.some(
+          oldPeer => oldPeer.id === peer.id);
+
+      if (!isOldPeer) {
+        this.settings.peers = this.settings.peers.concat(peer);
+      }
     };
 
     WifiDirectService.instance.addEventListener('peer', addPeer);
