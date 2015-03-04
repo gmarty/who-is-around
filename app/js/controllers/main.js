@@ -1,5 +1,7 @@
 import { Controller } from 'components/fxos-mvc/dist/mvc';
 
+import HomeController from 'js/controllers/home';
+
 import WifiDirectService from 'js/services/wifi-direct';
 import BluetoothService from 'js/services/bluetooth';
 import LanService from 'js/services/lan';
@@ -12,6 +14,10 @@ class MainController extends Controller {
     console.log('MainController#constructor()');
 
     this.settings = new Settings();
+
+    this.controllers = {
+      home: new HomeController({settings: this.settings})
+    };
 
     this.init();
   }

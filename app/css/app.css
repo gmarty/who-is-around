@@ -1,0 +1,127 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+}
+
+body {
+  background: #fff;
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+body > section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms;
+}
+
+body > section.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Home view */
+#home {
+  background: skyblue;
+  perspective: 50rem;
+}
+
+/* Background */
+#bkg {
+  width: 300vh;
+  height: 100vh;
+  background: url(../img/background.svg) no-repeat center center / 100% 100%;
+}
+
+@media (orientation: portrait) {
+  #bkg {
+    margin-left: calc(100vw / 2 - 300vh / 2);
+  }
+}
+
+@media (orientation: landscape) {
+  #bkg {
+    margin-left: calc(100vw / 2 - 300vh / 2);
+  }
+}
+
+/* Characters */
+[data-character] {
+  position: absolute;
+  z-index: 10;
+}
+
+[data-character] > div.shadow {
+  position: absolute;
+  bottom: -7.5%;
+  left: 0;
+  background: grey;
+  opacity: .3;
+  width: 100%;
+  height: 20%;
+  border-radius: 100%;
+  z-index: -1;
+}
+
+[data-character] > div.character {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-origin: center bottom;
+  animation: wiggle 1.5s ease-in-out infinite alternate;
+  background: transparent no-repeat center center / 100% 100%;
+  z-index: 1;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(3deg);
+  }
+}
+
+[data-character="keyboard"] > div.character {
+  background-image: url(../img/characters/keyboard.svg);
+}
+
+[data-character="computer"] > div.character {
+  background-image: url(../img/characters/computer.svg);
+}
+
+[data-character="phone"] > div.character {
+  background-image: url(../img/characters/phone.svg);
+}
+
+[data-character="tablet"] > div.character {
+  background-image: url(../img/characters/tablet.svg);
+}
+
+[data-character="penguin"] > div.character {
+  background-image: url(../img/characters/penguin.svg);
+}
+
+[data-character] > div.name {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: calc(-5% - 1rem);
+  font-size: 1rem;
+  text-align: center;
+  color: dimgrey;
+  animation: wiggle 1.5s ease-in-out infinite alternate-reverse;
+  transform-origin: center 100%;
+  overflow: hidden;
+}
+
+[data-character] > div.name span {
+  background: rgba(255, 255, 255, 0.5);
+  padding: .2rem;
+}
